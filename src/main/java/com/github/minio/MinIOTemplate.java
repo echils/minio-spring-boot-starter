@@ -31,7 +31,6 @@ import static com.github.minio.schema.MinIOPolicy.isShared;
  * MinIOTemplate
  *
  * @author echils
- * @since 2021-04-02 11:00
  */
 public class MinIOTemplate {
 

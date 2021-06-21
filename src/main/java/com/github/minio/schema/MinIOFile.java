@@ -11,7 +11,6 @@ import java.time.ZonedDateTime;
  * MinIOFile
  *
  * @author echils
- * @since 2021-04-02 15:54
  */
 @Data
 @AllArgsConstructor

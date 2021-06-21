@@ -4,14 +4,15 @@ import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * MinIOProperties
  *
  * @author echils
- * @since 2021-04-01 10:53
  */
 @Data
+@Component
 @ConfigurationProperties(prefix = "spring.minio")
 public class MinIOProperties implements InitializingBean {
 

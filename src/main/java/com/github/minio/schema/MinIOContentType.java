@@ -13,7 +13,6 @@ import java.nio.file.Paths;
  * MinIOContentType
  *
  * @author echils
- * @since 2021-04-06 16:13
  */
 public class MinIOContentType {
 

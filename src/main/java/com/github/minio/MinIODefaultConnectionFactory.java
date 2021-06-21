@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
  * MinIODefaultConnectionFactory
  *
  * @author echils
- * @since 2021-04-02 10:30
  */
 @Component
 public class MinIODefaultConnectionFactory implements IMinIOConnectionFactory {

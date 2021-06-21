@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
  * MinIOPolicy
  *
  * @author echils
- * @since 2021-04-06 09:57
  */
 public class MinIOPolicy {
 

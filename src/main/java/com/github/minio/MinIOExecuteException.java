@@ -4,7 +4,6 @@ package com.github.minio;
  * MinIOExecuteException
  *
  * @author echils
- * @since 2021-04-02 10:49
  */
 public class MinIOExecuteException extends RuntimeException {
 
