@@ -57,7 +57,6 @@ public class MinIODefaultConnectionFactory implements IMinIOConnectionFactory {
      * Test the connection of MinIO
      *
      * @param client {@link MinioClient}
-     * @return
      */
     private void check(MinioClient client) {
         try {

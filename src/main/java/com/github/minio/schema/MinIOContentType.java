@@ -25,7 +25,6 @@ public class MinIOContentType {
      * Get content type of file
      *
      * @param file the upload file
-     * @return
      */
     public static String getContentType(File file) {
         String contentType = null;

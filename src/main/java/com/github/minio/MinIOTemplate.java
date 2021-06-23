@@ -48,7 +48,6 @@ public class MinIOTemplate {
     /**
      * List all the buckets
      *
-     * @return
      */
     public List<Bucket> listBuckets() {
         return listBuckets(null);
@@ -59,7 +58,6 @@ public class MinIOTemplate {
      * List all the buckets and support filtering
      *
      * @param predicate {@link Predicate}
-     * @return
      */
     public List<Bucket> listBuckets(Predicate<Bucket> predicate) {
         try {
@@ -92,7 +90,6 @@ public class MinIOTemplate {
      * Determine whether the bucket exists
      *
      * @param bucketName the name of bucket
-     * @return
      */
     public boolean bucketExist(String bucketName) {
         try {
@@ -108,7 +105,6 @@ public class MinIOTemplate {
      * Create a bucket with default policy
      *
      * @param bucketName the name of bucket
-     * @return
      */
     public void createBucket(String bucketName) {
         this.createBucket(bucketName, MinIOPolicy.Policy.READ_AND_WRITE);
@@ -120,7 +116,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param policy     the policy of bucket
-     * @return
      */
     public void createBucket(String bucketName, MinIOPolicy.Policy policy) {
         if (bucketExist(bucketName)) {
@@ -142,7 +137,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param policy     the policy of bucket
-     * @return
      */
     public void setBucketPolicy(String bucketName, MinIOPolicy.Policy policy) {
         if (bucketExist(bucketName)) {
@@ -182,7 +176,6 @@ public class MinIOTemplate {
      * List all files of bucket
      *
      * @param bucketName the name of bucket
-     * @return
      */
     public List<MinIOFile> listFiles(String bucketName) {
         if (!bucketExist(bucketName)) {
@@ -210,7 +203,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param prefix     prefix of the file name
-     * @return
      */
     public List<MinIOFile> listFiles(String bucketName, String prefix) {
         if (!bucketExist(bucketName)) {
@@ -238,7 +230,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param predicate  {@link Predicate}
-     * @return
      */
     public List<MinIOFile> listFiles(String bucketName, Predicate<MinIOFile> predicate) {
         List<MinIOFile> minIOFiles = listFiles(bucketName);
@@ -254,7 +245,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param filename   the name of file
-     * @return
      */
     public Optional<MinIOFile> getFile(String bucketName, String filename) {
         if (!bucketExist(bucketName)) {
@@ -284,7 +274,6 @@ public class MinIOTemplate {
      * @param filename   the name of file
      * @param duration   the time of expire
      * @param timeUnit   the time of type
-     * @return
      */
     public URI getFileUrl(String bucketName, String filename, int duration, TimeUnit timeUnit) {
         try {
@@ -307,7 +296,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param filename   the name of file
-     * @return
      */
     public URI getFileUrl(String bucketName, String filename) {
         return getFileUrl(bucketName, filename, 7, TimeUnit.DAYS);
@@ -321,7 +309,6 @@ public class MinIOTemplate {
      * @param sourceFilename   The filename of source bucket
      * @param targetBucketName The name of target bucket
      * @param targetFilename   The filename of source file
-     * @return
      */
     public URI copyFile(String sourceBucketName, String sourceFilename, String targetBucketName, String targetFilename) {
         Optional<MinIOFile> sourceFile = getFile(sourceBucketName, sourceFilename);
@@ -390,7 +377,6 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      * @param filename   the name of file
-     * @return
      */
     public InputStream downloadFile(String bucketName, String filename) {
         Optional<MinIOFile> fileOptional = getFile(bucketName, filename);

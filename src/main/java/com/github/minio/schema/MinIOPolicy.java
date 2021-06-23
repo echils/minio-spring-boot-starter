@@ -50,7 +50,6 @@ public class MinIOPolicy {
      * Determine if it is a shared bucket
      *
      * @param policy the policy of bucket
-     * @return
      */
     public static boolean isShared(String policy) {
         return StringUtils.isNotBlank(policy) &&
@@ -67,7 +66,6 @@ public class MinIOPolicy {
     /**
      * Apply policy json
      *
-     * @return
      */
     public String apply() {
         String result;
