@@ -9,10 +9,10 @@ This README.md describes how to quickly configure and use the launcher and provi
 </p>
 
 ## Development Environment  
-JDK     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.8.0_202  
-Maven   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.4  
+JDK     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.8.0_202  
+Maven   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.5.4  
 Spring Boot &nbsp;&nbsp;&nbsp;&nbsp;2.3.4.RELEASE  
-MinIO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.1.4
+MinIO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.1.4
 
 
 ## Quick Start Example  
@@ -25,7 +25,7 @@ MinIO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ````
-##### 2、Add the following configuration to the application.yaml,see the class {@link MinIOProperties} for additional configuration parameters  
+##### 2、Add the following configuration to the application.yaml,see the class {@link [MinIOProperties](./src/main/java/com/github/minio/MinIOProperties.java)} for additional configuration parameters  
 ````
   spring:
     minio:
@@ -35,7 +35,7 @@ MinIO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
       password: 123456
 ````
 
-##### 3、Autowired the tool {@link MinIOTemplate} in your service  
+##### 3、Autowired the tool {@link [MinIOTemplate](./src/main/java/com/github/minio/MinIOTemplate.java)} in your service  
 ````
 @Service
 public class Test {
