@@ -250,6 +250,9 @@ public class MinIOTemplate {
         if (!bucketExist(bucketName)) {
             return Optional.empty();
         }
+        if (filename.startsWith("/")) {
+            filename = filename.substring(filename.indexOf("/") + 1);
+        }
         for (Result<Item> itemResult : minioClient.listObjects(ListObjectsArgs.builder()
                 .bucket(bucketName).recursive(true).prefix(filename).build())) {
             try {
@@ -273,10 +276,13 @@ public class MinIOTemplate {
      * @param bucketName the name of bucket
      * @param filename   the name of file
      * @param duration   the time of expire
-     * @param timeUnit   the time of type
+     * @param timeUnit   the time of unit
      */
     public URI getFileUrl(String bucketName, String filename, int duration, TimeUnit timeUnit) {
         try {
+            if (filename.startsWith("/")) {
+                filename = filename.substring(filename.indexOf("/") + 1);
+            }
             String bucketPolicy = minioClient.getBucketPolicy(GetBucketPolicyArgs.builder().bucket(bucketName).build());
             String url = minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
                     .method(Method.GET).bucket(bucketName).object(filename).expiry(duration, timeUnit).build());
