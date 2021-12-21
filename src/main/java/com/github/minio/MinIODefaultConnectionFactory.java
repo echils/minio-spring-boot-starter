@@ -34,6 +34,7 @@ public class MinIODefaultConnectionFactory implements IMinIOConnectionFactory {
                 minioClient.setTimeout(minIOProperties.getConnectTimeout(), minIOProperties.getWriteTimeout(),
                         minIOProperties.getReadTimeout());
                 check(minioClient);
+                return minioClient;
             } catch (Exception e) {
                 logger.error("Malformed url of MinIO server:{}", minIOProperties.getUrl());
                 throw new MinIOExecuteException("Malformed url '" + minIOProperties.getUrl() + "'");
