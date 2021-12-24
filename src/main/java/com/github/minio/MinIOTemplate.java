@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -186,8 +187,9 @@ public class MinIOTemplate {
                 .bucket(bucketName).build()).forEach(itemResult -> {
             try {
                 Item item = itemResult.get();
-                MinIOFile minioFile = new MinIOFile(item.objectName(), bucketName,
-                        item.lastModified(), item.size(), getFileUrl(bucketName, item.objectName()));
+                String objectName = URLDecoder.decode(item.objectName(), "utf-8");
+                MinIOFile minioFile = new MinIOFile(objectName, bucketName,
+                        item.lastModified(), item.size(), getFileUrl(bucketName, objectName));
                 minIOFiles.add(minioFile);
             } catch (Exception e) {
                 logger.error("MinIO list files of bucket:{} failed:{}", bucketName, e.getMessage());
@@ -213,8 +215,9 @@ public class MinIOTemplate {
                 .prefix(prefix).build()).forEach(itemResult -> {
             try {
                 Item item = itemResult.get();
-                MinIOFile minioFile = new MinIOFile(item.objectName(), bucketName,
-                        item.lastModified(), item.size(), getFileUrl(bucketName, item.objectName()));
+                String objectName = URLDecoder.decode(item.objectName(), "utf-8");
+                MinIOFile minioFile = new MinIOFile(objectName, bucketName,
+                        item.lastModified(), item.size(), getFileUrl(bucketName, objectName));
                 minIOFiles.add(minioFile);
             } catch (Exception e) {
                 logger.error("MinIO list files of bucket:{} and prefix:{} failed:{}", bucketName, prefix, e.getMessage());
@@ -257,8 +260,9 @@ public class MinIOTemplate {
                 .bucket(bucketName).recursive(true).prefix(filename).build())) {
             try {
                 Item item = itemResult.get();
-                if (item.objectName().trim().equals(filename.trim())) {
-                    return Optional.of(new MinIOFile(item.objectName(), bucketName,
+                String objectName = URLDecoder.decode(item.objectName(), "utf-8");
+                if (objectName.trim().equals(filename.trim())) {
+                    return Optional.of(new MinIOFile(objectName, bucketName,
                             item.lastModified(), item.size(), getFileUrl(bucketName, filename)));
                 }
             } catch (Exception e) {
