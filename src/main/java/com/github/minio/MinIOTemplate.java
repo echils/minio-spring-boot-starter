@@ -293,7 +293,7 @@ public class MinIOTemplate {
             if (isShared(bucketPolicy)) {
                 url = url.substring(0, url.indexOf("?"));
             }
-            return new URI(url);
+            return new URI(URLDecoder.decode(url, "utf-8"));
         } catch (Exception e) {
             logger.error("MinIO get url of bucket name:{} and filename:{} failed:{}", bucketName, filename, e.getMessage());
             throw new MinIOExecuteException(e);
