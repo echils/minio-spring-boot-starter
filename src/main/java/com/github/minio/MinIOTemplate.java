@@ -1,5 +1,6 @@
 package com.github.minio;
 
+import com.github.minio.schema.MinIOBucket;
 import com.github.minio.schema.MinIOFile;
 import com.github.minio.schema.MinIOPolicy;
 import io.minio.*;
@@ -48,9 +49,8 @@ public class MinIOTemplate {
 
     /**
      * List all the buckets
-     *
      */
-    public List<Bucket> listBuckets() {
+    public List<MinIOBucket> listBuckets() {
         return listBuckets(null);
     }
 
@@ -60,7 +60,7 @@ public class MinIOTemplate {
      *
      * @param predicate {@link Predicate}
      */
-    public List<Bucket> listBuckets(Predicate<Bucket> predicate) {
+    public List<MinIOBucket> listBuckets(Predicate<Bucket> predicate) {
         try {
             List<Bucket> buckets = minioClient.listBuckets();
             if (CollectionUtils.isEmpty(buckets)) {
@@ -69,7 +69,8 @@ public class MinIOTemplate {
             if (predicate != null) {
                 buckets = buckets.stream().filter(predicate).collect(Collectors.toList());
             }
-            return buckets;
+            return buckets.stream().map(bucket -> new MinIOBucket(bucket.name(),
+                    bucket.creationDate())).collect(Collectors.toList());
         } catch (Exception e) {
             logger.error("MinIO list buckets failed:{}", e.getMessage());
             throw new MinIOExecuteException(e);
@@ -82,8 +83,8 @@ public class MinIOTemplate {
      *
      * @param bucketName the name of bucket
      */
-    public Optional<Bucket> getBucket(String bucketName) {
-        return listBuckets().stream().filter(bucket -> bucket.name().equals(bucketName)).findFirst();
+    public Optional<MinIOBucket> getBucket(String bucketName) {
+        return listBuckets().stream().filter(bucket -> bucket.getName().equals(bucketName)).findFirst();
     }
 
 
