@@ -417,19 +417,17 @@ public class MinIOTemplate {
             throw new MinIOExecuteException("No such file");
         }
 
-        if (StringUtils.isEmpty(path)) {
-            throw new MinIOExecuteException("Illegal file path");
-        }
+        if (StringUtils.isEmpty(path)) throw new MinioOperateException("Illegal file path");
 
         File file = new File(path);
-        if (file.isDirectory()) {
-            throw new MinIOExecuteException("The path is directory");
-        }
+
+        if (file.isDirectory()) throw new MinioOperateException("The path is directory");
+
+        if (file.exists()) file.delete();
 
         File parentFile = file.getParentFile();
-        if (!parentFile.exists()) {
-            parentFile.mkdirs();
-        }
+        
+        if (!parentFile.exists()) parentFile.mkdirs();
 
         try {
             minioClient.downloadObject(DownloadObjectArgs.builder()
