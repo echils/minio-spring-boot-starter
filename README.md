@@ -33,9 +33,10 @@ MinIO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
       port: 9000
       username: root
       password: 123456
+      default-bucket: media
 ````
 
-##### 3、Autowired the tool {@link [MinIOTemplate](./src/main/java/com/github/minio/MinIOTemplate.java)} in your service  
+##### 3、Autowired the tool {@link [MinIOTemplate](./src/main/java/com/github/minio/MinIOTemplate.java) or [DefaultMinIOTemplate](./src/main/java/com/github/minio/DefaultMinIOTemplate.java)} in your service  
 ````
 @Service
 public class Test {
@@ -43,9 +44,14 @@ public class Test {
     @Autowired
     private MinIOTemplate minIOTemplate;
 
+    @Autowired
+    private DefaultMinIOTemplate defaultMinIOTemplate;
+
+
     private static final String BUCKET_NAME = "Test";
     
-    public void invoke(){
+
+    public void testMinIOTemplate(){
     
         List<Bucket> buckets = minIOTemplate.listBuckets();
         
@@ -59,7 +65,20 @@ public class Test {
         
         ...    
     }
+
+
+    public void testDefaultMinIOTemplate(){
     
+        defaultMinIOTemplate.upload(new File("xxxxx"));
+        
+        defaultMinIOTemplate.listFiles();
+
+        defaultMinIOTemplate.getCurrentBucket();
+
+        ...
+    }
+    
+
 }
 
 ````

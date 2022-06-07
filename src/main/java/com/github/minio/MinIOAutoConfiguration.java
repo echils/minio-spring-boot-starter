@@ -18,8 +18,8 @@ public class MinIOAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean(name = "minIOConnectionFactory")
-    public IMinIOConnectionFactory minIOConnectionFactory() {
+    @ConditionalOnMissingBean(name = "connectionFactory")
+    public IMinIOConnectionFactory connectionFactory() {
         return new MinIODefaultConnectionFactory();
     }
 
@@ -27,6 +27,15 @@ public class MinIOAutoConfiguration {
     @ConditionalOnMissingBean(name = "minIOTemplate")
     public MinIOTemplate minIOTemplate(IMinIOConnectionFactory minIOConnectionFactory) {
         return new MinIOTemplate(minIOConnectionFactory.getConnection());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "defaultMinIOTemplate")
+    public DefaultMinIOTemplate defaultMinIOTemplate(IMinIOConnectionFactory connectionFactory,
+                                                     MinIOProperties minioProperties) {
+
+        return new DefaultMinIOTemplate(new MinIOTemplate(connectionFactory.getConnection()),
+                minioProperties.getDefaultBucket());
     }
 
 }

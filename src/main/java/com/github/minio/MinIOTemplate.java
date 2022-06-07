@@ -245,7 +245,7 @@ public class MinIOTemplate {
 
 
     /**
-     * Get minio file by filename
+     * Get minIO file by filename
      *
      * @param bucketName the name of bucket
      * @param filename   the name of file
@@ -363,7 +363,7 @@ public class MinIOTemplate {
 
 
     /**
-     * Batch delete minio file
+     * Batch delete minIO file
      * warn: minioClient.removeObjects() is not work
      *
      * @param bucketName the name of bucket

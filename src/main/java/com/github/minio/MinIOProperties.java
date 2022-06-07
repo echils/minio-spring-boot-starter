@@ -48,6 +48,11 @@ public class MinIOProperties implements InitializingBean {
     private boolean secure = false;
 
     /**
+     * MinIO default bucket
+     */
+    private String defaultBucket = "media";
+
+    /**
      * Define the connect timeout,the unit is millisecond
      */
     private int connectTimeout = 10000;
@@ -68,10 +73,13 @@ public class MinIOProperties implements InitializingBean {
             throw new MinIOExecuteException("Connection required parameters cannot be empty");
         }
         if (StringUtils.isBlank(username)) {
-            throw new MinIOExecuteException("username cannot be empty");
+            throw new MinIOExecuteException("Username cannot be empty");
         }
         if (StringUtils.isBlank(password)) {
-            throw new MinIOExecuteException("password cannot be empty");
+            throw new MinIOExecuteException("Password cannot be empty");
+        }
+        if (StringUtils.isBlank(defaultBucket)) {
+            throw new MinIOExecuteException("Default bucket cannot be empty");
         }
     }
 
